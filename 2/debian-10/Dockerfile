@@ -28,7 +28,12 @@ ENV BITNAMI_APP_NAME="spark" \
     PATH="/opt/bitnami/python/bin:/opt/bitnami/java/bin:/opt/bitnami/spark/bin:/opt/bitnami/spark/sbin:/opt/bitnami/common/bin:$PATH" \
     SPARK_HOME="/opt/bitnami/spark"
 
+# Install Spark-NLP
+USER root
+RUN pip install wheel
+RUN pip install numpy==1.18.4 spark-nlp==2.5.0 pyspark==2.4.3
+
 WORKDIR /opt/bitnami/spark
-USER 1001
+#USER 1001
 ENTRYPOINT [ "/opt/bitnami/scripts/spark/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/spark/run.sh" ]
